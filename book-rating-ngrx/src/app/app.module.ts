@@ -1,27 +1,22 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookDetailsComponent } from './book-details/book-details.component';
-import { BookComponent } from './book/book.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BookStoreService } from './shared/book-store.service';
+import { BooksModule } from './books/books.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    BookComponent,
-    BookDetailsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BooksModule
   ],
   bootstrap: [AppComponent]
 })
