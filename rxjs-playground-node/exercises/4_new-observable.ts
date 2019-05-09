@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 /*************************************/
 
 // TODO
-const myObservable$ = // ...
+const myObservable$ = { subscribe: (o: any) => { } } // ...  real observable here
 
 /*************************************/
 
