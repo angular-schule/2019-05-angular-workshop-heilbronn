@@ -14,7 +14,7 @@ Die gesamte Installation wird rund 30 Minuten dauern.
 
 ## Benötigte Software
 
-1. **Node.js 8.9** oder höher: [https://nodejs.org](https://nodejs.org)
+1. **Node.js 10.9** oder höher: [https://nodejs.org](https://nodejs.org)
    + Mac-Benutzer bitte Homebrew verwenden! ([siehe Anleitung](https://presentations.angular.schule/HOMEBREW_NODE))
 2. **Google Chrome:** [https://www.google.com/chrome/](https://www.google.com/chrome/)
    + **[Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)** (Chrome Extension)
@@ -27,10 +27,10 @@ Die gesamte Installation wird rund 30 Minuten dauern.
 
 ```
 node -v
-> Erwartet: v8.9.x oder höher
+> Erwartet: v10.9.x oder höher
 
 npm -v
-> Erwartet: 5.x oder höher
+> Erwartet: 6.x oder höher
 ```
 
 
