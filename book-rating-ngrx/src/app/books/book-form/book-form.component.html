@@ -1,0 +1,40 @@
+<h3>Buch anlegen</h3>
+<hr>
+
+<form [formGroup]="bookForm" (ngSubmit)="submit()">
+  <div class="form-group">
+    <label i18n="@@isbnlabel">ISBN</label>
+    <input class="form-control" type="text" formControlName="isbn">
+    <div class="feedback-red" *ngIf="isInvalid('isbn')" i18n="@@isbnmessage">
+      ISBN ist ungültig.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label i18n="@@titlelabel">Titel</label>
+    <input class="form-control" type="text" formControlName="title">
+  </div>
+
+  <div class="form-group">
+    <label i18n="@@desclabel">Beschreibung</label>
+    <textarea class="form-control" formControlName="description"></textarea>
+  </div>
+
+  <button type="submit"
+    i18n="@@submitbutton"
+    class="btn"
+    [disabled]="bookForm.invalid"
+    [ngClass]="{ 'btn-success': bookForm.valid, 'btn-danger': bookForm.invalid }">
+    Abschicken
+  </button>
+  <!-- [class.btn-success]="bookForm.valid" -->
+
+</form>
+
+<ul>
+  <li *ngFor="let book of results$ | async">{{ book.title }}</li>
+</ul>
+
+<hr>
+
+<a routerLink="/books">Zum Dashboard</a><br>

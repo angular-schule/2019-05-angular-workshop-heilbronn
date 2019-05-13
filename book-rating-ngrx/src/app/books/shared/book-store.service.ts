@@ -48,6 +48,12 @@ export class BookStoreService {
   setRating(isbn: string, rating: number): Observable<any> {
     return this.http.post(`${this.api}/books/${isbn}/rate`, { rating }, { responseType: 'text' });
   }
+  
+  search(term: string): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.api}/books/search/${term}`).pipe(
+      map(rawBooks => (rawBooks ? rawBooks : [])),
+    );
+  }
 
   private responseToBook(res: any): Book {
     return {
