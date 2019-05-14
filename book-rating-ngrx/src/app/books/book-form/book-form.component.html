@@ -27,12 +27,11 @@
     [ngClass]="{ 'btn-success': bookForm.valid, 'btn-danger': bookForm.invalid }">
     Abschicken
   </button>
-  <!-- [class.btn-success]="bookForm.valid" -->
 
 </form>
 
 <ul>
-  <li *ngFor="let book of results$ | async">{{ book.title }}</li>
+  <li *ngFor="let book of searchResults$ | async">{{ book.title }}</li>
 </ul>
 
 <hr>
