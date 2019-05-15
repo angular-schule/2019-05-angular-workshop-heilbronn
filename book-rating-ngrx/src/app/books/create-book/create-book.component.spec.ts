@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
-fdescribe('CreateBookComponent', () => {
+describe('CreateBookComponent', () => {
   let component: CreateBookComponent;
   let fixture: ComponentFixture<CreateBookComponent>;
 
