@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { of } from 'rxjs';
 
 import { Book } from '../shared/book';
@@ -8,14 +8,17 @@ import { BookStoreService } from '../shared/book-store.service';
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   loading$ = of(false); // TODO: Implement logic
   books$ = this.service.getAll();
 
   constructor(private service: BookStoreService) { }
 
-  ngOnInit() {
+  doCreateBook(book: Book) {
+    this.service.create(book).subscribe(() => {
+      this.books$ = this.service.getAll(); // TOOD: ngrx!
+    });
   }
 
   doRateUp(book: Book) {

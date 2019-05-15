@@ -1,11 +1,12 @@
+<br-create-book (createBook)="doCreateBook($event)"></br-create-book>
+
 <div class="progress mb-4 mt-5" *ngIf="loading$ | async">
   <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
     Loading books...
   </div>
 </div>
 
-<a routerLink="/create" class="btn btn-primary mb-4">Buch anlegen</a>
-
+<hr>
 
 <p>
   <br-book *ngFor="let b of books$ | async"
