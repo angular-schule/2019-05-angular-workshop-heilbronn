@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { BookComponent } from './book.component';
 
@@ -8,6 +9,9 @@ describe('BookComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       declarations: [ BookComponent ]
     })
     .compileComponents();
@@ -16,6 +20,14 @@ describe('BookComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
+    component.book = {
+      isbn: '000',
+      title: 'test',
+      description: 'test',
+      rating: 1,
+      authors: [],
+      thumbnail: ''
+    };
     fixture.detectChanges();
   });
 

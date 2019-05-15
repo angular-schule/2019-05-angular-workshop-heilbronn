@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BookDetailsComponent } from './book-details.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { EMPTY } from 'rxjs';
+
+import { BookStoreService } from '../shared/book-store.service';
+import { BookDetailsComponent } from './book-details.component';
 
 describe('BookDetailsComponent', () => {
   let component: BookDetailsComponent;
@@ -12,7 +14,11 @@ describe('BookDetailsComponent', () => {
       imports: [
         RouterTestingModule
       ],
-      declarations: [ BookDetailsComponent ]
+      declarations: [BookDetailsComponent],
+      providers: [{
+        provide: BookStoreService,
+        useValue: { getSingle: () => EMPTY }
+      }]
     })
     .compileComponents();
   }));
