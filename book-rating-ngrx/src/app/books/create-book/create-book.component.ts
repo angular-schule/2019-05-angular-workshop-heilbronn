@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Book } from '../shared/book';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { filter, debounceTime, distinctUntilChanged, catchError, switchMap } from 'rxjs/operators';
+import { filter, debounceTime, distinctUntilChanged, catchError, switchMap, map } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
 import { Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -24,7 +24,7 @@ export class CreateBookComponent implements OnInit {
     description: new FormControl('')
   });
 
-  searchResults$: Observable<Partial<Book>[]>;
+  searchResults$: Observable<string[]>;
 
   constructor(private bs: BookStoreService) { }
 
@@ -34,10 +34,12 @@ export class CreateBookComponent implements OnInit {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap(term => this.bs.search(term).pipe(
-        catchError((err: HttpErrorResponse) => of([{
-          title: 'Error loading ' + err.url
-        }]))
-      ))
+        map(books => books.map(b => b.title)),
+        catchError((err: HttpErrorResponse) => of([
+          'Error loading ' + err.url
+        ]))
+      )),
+
     );
   }
 
@@ -53,6 +55,6 @@ export class CreateBookComponent implements OnInit {
     };
 
     this.createBook.emit(newBook);
-    this.bookForm.reset();
+    this.bookForm.reset(); //
   }
 }
