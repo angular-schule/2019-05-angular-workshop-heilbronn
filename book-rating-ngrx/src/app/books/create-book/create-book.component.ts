@@ -24,12 +24,13 @@ export class CreateBookComponent implements OnInit {
     description: new FormControl('')
   });
 
+  source$ = this.bookForm.get('title').valueChanges;
   searchResults$: Observable<string[]>;
 
   constructor(private bs: BookStoreService) { }
 
   ngOnInit() {
-    this.searchResults$ = this.bookForm.get('title').valueChanges.pipe(
+    this.searchResults$ = this.source$.pipe(
       filter((term: string) => term && term.length >= 3),
       debounceTime(500),
       distinctUntilChanged(),
