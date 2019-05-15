@@ -40,7 +40,6 @@ export class CreateBookComponent implements OnInit {
           'Error loading ' + err.url
         ]))
       )),
-
     );
   }
 

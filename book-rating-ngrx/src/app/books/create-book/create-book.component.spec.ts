@@ -4,7 +4,7 @@ import { CreateBookComponent } from './create-book.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookStoreService } from '../shared/book-store.service';
 import { of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, debounceTime } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
 
 describe('CreateBookComponent', () => {
@@ -53,8 +53,7 @@ describe('CreateBookComponent', () => {
       expect(actual).toEqual(expected);
     });
 
-    scheduler.run(helpers => {
-      const { cold, expectObservable } = helpers;
+    scheduler.run(({ cold, expectObservable }) => {
 
       component.source$ = cold('a -- b 1000ms c 1000ms d', {
         a: 'An',
@@ -77,6 +76,23 @@ describe('CreateBookComponent', () => {
       expectObservable(result).toBe(expectedMarbles, expectedVales);
     });
   });
+
+  it('marbles!', () => {
+
+    const scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
+
+    scheduler.run(({ cold, expectObservable }) => {
+      const source$ = cold('-a-b-c--------|');
+      const result$ = source$.pipe(
+        debounceTime(5)
+      );
+      const expectedMarbles = '----------c---|';
+      expectObservable(result$).toBe(expectedMarbles);
+    });
+  });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
