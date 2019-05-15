@@ -19,7 +19,7 @@ describe('BookRatingService', () => {
     };
   });
 
-  it('[JIRA-433] should rate up a book by one', () => {
+  it('should rate up a book by one', () => {
     const ratedBook = service.rateUp(book);
     expect(ratedBook.rating).toBe(4);
   });
