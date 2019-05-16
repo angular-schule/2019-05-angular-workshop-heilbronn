@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'br-dashboard',
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   loading$ = of(false); // TODO: Implement logic
   books$ = this.service.getAll();
 
-  constructor(private service: BookStoreService) { }
+  constructor(private service: BookStoreService,
+    private ratingService: BookRatingService) { }
 
   ngOnInit() {
   }
@@ -24,14 +26,14 @@ export class DashboardComponent implements OnInit {
   }
 
   doRateUp(book: Book) {
-    const rating = Math.min(5, book.rating + 1); // TODO: hier BookRatingService verwenden!
-    this.service.setRating(book.isbn, rating)
+    const ratedBook = this.ratingService.doRateUp(book);
+    this.service.setRating(book.isbn, ratedBook.rating)
       .subscribe(e => console.log(e));
   }
 
   doRateDown(book: Book) {
-    const rating = Math.max(1, book.rating - 1);
-    this.service.setRating(book.isbn, rating)
+    const ratedBook = this.ratingService.doRateDown(book);
+    this.service.setRating(book.isbn, ratedBook.rating)
       .subscribe(e => console.log(e));
   }
 }

@@ -28,7 +28,7 @@ describe('DashboardComponent', () => {
         {
           provide: BookRatingService,
           useValue: {
-            doRateUp: book => book
+            doRateUp: () => {}
           }
         }
       ]
@@ -45,7 +45,7 @@ describe('DashboardComponent', () => {
   it('should use the BookRatingService to rate a book',  () => {
     const rs = TestBed.get<BookRatingService>(BookRatingService);
 
-    spyOn(rs, 'doRateUp').and.callThrough();
+    spyOn(rs, 'doRateUp').and.callFake(book => book);
 
     const theBook = { isbn: '000'} as Book;
     component.doRateUp(theBook);
