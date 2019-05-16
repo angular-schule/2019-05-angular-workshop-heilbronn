@@ -4,8 +4,11 @@
   </div>
 </div>
 
-<br-create-book></br-create-book>
+<br-create-book
+  (createBook)="doCreateBook($event)"
+></br-create-book>
 
+<hr>
 
 <p>
   <br-book *ngFor="let b of books$ | async"
