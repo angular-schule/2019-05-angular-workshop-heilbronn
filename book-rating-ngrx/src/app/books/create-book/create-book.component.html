@@ -1,3 +1,27 @@
-<p>
-  create-book works!
-</p>
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label>ISBN</label>
+    <input class="form-control" type="text" formControlName="isbn">
+    <div class="feedback-red" *ngIf="isInvalid('isbn')" i18n="@@isbnmessage">
+      ISBN ist ungültig.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Titel</label>
+    <input class="form-control" type="text" formControlName="title">
+    <!-- <ul class="mt-2">
+      <li *ngFor="let searchResult of searchResults$ | async">{{ searchResult }}</li>
+    </ul> -->
+  </div>
+
+  <div class="form-group">
+    <label>Beschreibung</label>
+    <textarea class="form-control" formControlName="description"></textarea>
+  </div>
+
+  <button type="submit"
+    class="btn btn-success"
+    [disabled]="bookForm.invalid">Anlegen</button>
+
+</form>
