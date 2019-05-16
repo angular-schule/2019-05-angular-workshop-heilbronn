@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   }
 
   doRateUp(book: Book) {
-    const rating = Math.min(5, book.rating + 1);
+    const rating = Math.min(5, book.rating + 1); // TODO: hier BookRatingService verwenden!
     this.service.setRating(book.isbn, rating)
       .subscribe(e => console.log(e));
   }
