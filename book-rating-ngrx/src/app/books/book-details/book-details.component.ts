@@ -14,7 +14,8 @@ export class BookDetailsComponent implements OnInit {
 
   book$: Observable<Book>;
 
-  constructor(private route: ActivatedRoute, private bs: BookStoreService) { }
+  constructor(private route: ActivatedRoute,
+    private bs: BookStoreService) { }
 
   ngOnInit() {
     this.book$ = this.route.paramMap.pipe(
