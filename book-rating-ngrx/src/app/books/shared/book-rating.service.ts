@@ -6,11 +6,20 @@ import { Book } from './book';
 })
 export class BookRatingService {
 
+  readonly minRating = 1;
+  readonly maxRating = 5;
+
   doRateUp(book: Book) {
-    return book;
+    return {
+      ...book,
+      rating: book.rating < this.maxRating ? book.rating + 1 : this.maxRating
+    };
   }
 
   doRateDown(book: Book) {
-    return book;
+    return {
+      ...book,
+      rating: Math.max(book.rating - 1, this.minRating)
+    };
   }
 }
