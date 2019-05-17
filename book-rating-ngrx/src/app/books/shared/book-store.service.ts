@@ -59,4 +59,10 @@ export class BookStoreService {
       authors: res.authors
     };
   }
+
+  search(term: string): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.api}/books/search/${term}`).pipe(
+      map(rawBooks => (rawBooks ? rawBooks : [])),
+    );
+  }
 }
