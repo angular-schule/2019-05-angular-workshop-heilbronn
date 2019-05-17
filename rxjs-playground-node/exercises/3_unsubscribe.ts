@@ -8,4 +8,7 @@ const subscription = simpleTimer$.subscribe(
 
 /******************************/
 
-// TODO: Unsubscribe after timeout
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 5000)
+
