@@ -1,9 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
-import { Observable } from 'rxjs';
-import { map, filter, debounceTime, distinctUntilChanged, mergeMap, concatMap, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, filter, debounceTime, distinctUntilChanged, mergeMap, concatMap, switchMap, catchError } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'br-create-book',
@@ -32,7 +33,8 @@ export class CreateBookComponent implements OnInit {
      debounceTime(500),
      distinctUntilChanged(),
      switchMap(term => this.bs.search(term)),
-     map(books => books.map(book => book.title))
+     map(books => books.map(book => book.title)),
+     catchError((err: HttpErrorResponse) => of(['Es gab einen Fehler bei ' + err.url]))
     );
   }
 
