@@ -10,5 +10,5 @@ const subscription = simpleTimer$.subscribe(
 
 setTimeout(() => {
   subscription.unsubscribe();
-}, 5000)
+}, 4000)
 

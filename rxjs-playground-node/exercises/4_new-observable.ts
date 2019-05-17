@@ -3,7 +3,22 @@ import { Observable } from 'rxjs';
 /*************************************/
 
 // TODO
-const myObservable$ = { subscribe: (o: any) => { } } // ...  real observable here
+const myObservable$ = new Observable<string>(subscriber => {
+
+  subscriber.next('😀');
+  subscriber.next('😇');
+  subscriber.next('🤪');
+
+  setTimeout(() => {
+    console.log('Er feuert doch!');
+    subscriber.next('😡')
+  }, 1000);
+
+
+  subscriber.error('😱');
+
+
+});
 
 /*************************************/
 
@@ -13,4 +28,6 @@ const observer = {
   complete: () => console.info('Complete')
 };
 
-myObservable$.subscribe(observer);
+const subscription = myObservable$.subscribe(observer);
+
+setTimeout(() => subscription.unsubscribe(), 1000);
