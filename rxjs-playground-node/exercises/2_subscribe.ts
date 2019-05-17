@@ -1,7 +1,10 @@
 import { simpleTimer$ } from './data/simple-timer';
 
-simpleTimer$.subscribe(
-  e => console.log(e),
-  err => console.error(err),
-  () => console.info('Complete')
-);
+
+const observer = {
+  next: e => console.log(e),
+  error:  err => console.error(err),
+  complete: () => console.info('Complete')
+}
+
+simpleTimer$.subscribe(observer);
