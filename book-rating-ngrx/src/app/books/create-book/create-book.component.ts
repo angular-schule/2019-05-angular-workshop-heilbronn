@@ -32,9 +32,10 @@ export class CreateBookComponent implements OnInit {
      filter(x => x && x.length >= 3),
      debounceTime(500),
      distinctUntilChanged(),
-     switchMap(term => this.bs.search(term)),
-     map(books => books.map(book => book.title)),
-     catchError((err: HttpErrorResponse) => of(['Es gab einen Fehler bei ' + err.url]))
+     switchMap(term => this.bs.search(term).pipe(
+       map(books => books.map(book => book.title)),
+       catchError((err: HttpErrorResponse) => of(['Es ist ein Fehler aufgetreten']))
+     ))
     );
   }
 
