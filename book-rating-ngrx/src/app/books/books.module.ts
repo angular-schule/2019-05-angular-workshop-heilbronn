@@ -7,10 +7,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { CreateBookComponent } from './create-book/create-book.component';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 import * as fromBook from './reducers/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './effects/book.effects';
+import { State } from '../reducers';
+import { LoadBooks } from './actions/book.actions';
 
 @NgModule({
   declarations: [
@@ -27,4 +29,9 @@ import { BookEffects } from './effects/book.effects';
     EffectsModule.forFeature([BookEffects])
   ]
 })
-export class BooksModule { }
+export class BooksModule {
+
+  constructor(private store: Store<State>) {
+    this.store.dispatch(new LoadBooks());
+  }
+}

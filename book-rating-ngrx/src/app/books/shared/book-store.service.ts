@@ -15,7 +15,7 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<any[]>(`${this.api}/books`).pipe(
+    return this.http.get<any[]>(`${this.api}/books/slow`).pipe(
       map(books => books.map(book => this.responseToBook(book)))
     );
   }

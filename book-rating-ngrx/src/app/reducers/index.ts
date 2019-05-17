@@ -8,7 +8,7 @@ import {
 import { environment } from '../../environments/environment';
 
 export interface State {
-
+  // book: State
 }
 
 export const reducers: ActionReducerMap<State> = {
