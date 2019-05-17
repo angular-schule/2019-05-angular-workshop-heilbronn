@@ -7,6 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromBook from './reducers/book.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './effects/book.effects';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { CreateBookComponent } from './create-book/create-book.component';
   imports: [
     CommonModule,
     BooksRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('book', fromBook.reducer),
+    EffectsModule.forFeature([BookEffects])
   ]
 })
 export class BooksModule { }
