@@ -1,5 +1,5 @@
 # Reaktive Programmierung mit RxJS
-#### **von Ferdinand Malcher**
+#### **von Johannes Hoppe**
 
 <hr>
 
@@ -10,13 +10,12 @@
 Wir nutzen auch hier Angular als Framework, die Übungen sind aber allgemein gehalten und auch auf andere Umgebungen anwendbar.
 
 ```bash
-cd rxjs-playground
+cd rxjs-playground-exercises
 npm install
 npm start
 ```
 
 Öffne den Browser unter der URL [http://localhost:4200](http://localhost:4200), um die Anwendung zu sehen.
-Die Übungen befinden sich im Ordner `rxjs-playground/src/app/exercises/`.
 
 <hr>
 
